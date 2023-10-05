@@ -50,10 +50,10 @@ class UsuarioManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
 
         # Condição de is_staff
-        if extra_fields('is_superuse') is not True:
+        if extra_fields.get('is_superuser') is not True:
             raise ValueError('Permissão negada')
         
-        return self._create_user(email, password, extra_fields)
+        return self._create_user(email, password, **extra_fields)
     
 
 # Classe de usuário cutomizado
